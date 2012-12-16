@@ -28,6 +28,7 @@ You can also check the [hands-on](https://github.com/ericbottard/hands-on-cloudf
 1. _activity_: search by client AND period
 1. API authentication
 1. _activity_: expose alternate email representation
+1. get rid of web.xml!
 
 
 ## DONE

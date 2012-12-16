@@ -25,7 +25,6 @@ import java.util.Map;
 @PropertySource("classpath:datasource.properties")
 @EnableJpaRepositories("com.github.lateralthoughts.repository")
 @EnableTransactionManagement
-@EnableWebMvc
 public class MainConfiguration {
 
     private static final String DB_DIALECT = "org.hibernate.dialect.MySQL5Dialect";

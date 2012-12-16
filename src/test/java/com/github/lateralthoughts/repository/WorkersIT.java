@@ -32,9 +32,10 @@ public class WorkersIT {
 
     @Test
     public void should_delete_a_worker() {
-        Worker worker = worker("Jean-Baptiste", "Lemée", "jbl@lateral-thoughts.com");
-        Worker savedWorker = workerRepository.save(worker);
+        Worker savedWorker = workerRepository.save(worker("Jean-Baptiste", "Lemée", "jbl@lateral-thoughts.com"));
         workerRepository.delete(savedWorker);
+
+        assertThat(workerRepository.findAll()).hasSize(0);
     }
 
     @Test

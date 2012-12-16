@@ -23,7 +23,6 @@ You can also check the [hands-on](https://github.com/ericbottard/hands-on-cloudf
 
 ## TODO
 
-1. _client_: create/delete/expose LT clients (company name, address, email)
 1. _worker/client_: assign/update worker workload to client (number of days [step:0.5], TJM, worker status)
 1. _activity_: search by worker AND (period OR day)
 1. _activity_: search by client AND period
@@ -34,3 +33,4 @@ You can also check the [hands-on](https://github.com/ericbottard/hands-on-cloudf
 ## DONE
 
 1. _worker_: create/delete/expose LT workers (firstName, lastName, email)
+1. _client_: create/delete/expose LT clients (company name, address, email)

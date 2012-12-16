@@ -1,6 +1,9 @@
 package com.github.lateralthoughts.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.cloudfoundry.runtime.service.CloudServicesScanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +35,15 @@ public class MainConfiguration {
     @Inject
     private Environment environment;
 
+    @Autowired(required = false)
+    @Qualifier("lt-clients-db")
+    private DataSource dataSource;
+
+    @Bean
+    public static CloudServicesScanner cloudServicesScanner() {
+        return new CloudServicesScanner();
+    }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
@@ -42,8 +54,13 @@ public class MainConfiguration {
         return bean;
     }
 
-    @Bean(destroyMethod = "close")
+    @Bean
     public DataSource dataSource() {
+        // dirty Cloud Foundry hack
+        if(dataSource != null) {
+            return dataSource;
+        }
+
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName($("ds.driver"));
         dataSource.setUrl($("ds.url"));

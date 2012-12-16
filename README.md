@@ -11,6 +11,16 @@ Lateral Thoughts workers.
 1. open 'localhost:8080/clients' with your favourite tool (curl, browser...).
 Note you can also, for comfort of use, install [Spring Shell](http://www.springsource.org/spring-shell).
 
+
+## Deployment
+
+It's live: [http://lt-clients.cloudfoundry.com/](http://lt-clients.cloudfoundry.com/)!
+
+You'll need Cloud Foundry command line utility: [VMC](http://docs.cloudfoundry.com/tools/vmc/installing-vmc.html)
+if you wanna be able to deploy the application.
+
+You can also check the [hands-on](https://github.com/ericbottard/hands-on-cloudfoundry) to get familiar with CF.
+
 ## TODO
 
 1. _client_: create/delete/expose LT clients (company name, address, email)

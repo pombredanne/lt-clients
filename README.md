@@ -1,5 +1,7 @@
 # LT Client
 
+[![Build Status](https://travis-ci.org/LateralThoughts/lt-clients.png)](https://travis-ci.org/LateralThoughts/lt-clients)
+
 This is a REST API aiming at painlessly managing all business-related activities of
 Lateral Thoughts workers.
 

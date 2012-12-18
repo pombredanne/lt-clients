@@ -1,9 +1,6 @@
 package com.github.lateralthoughts.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "companies")
@@ -14,6 +11,10 @@ public class Company {
     private String name;
     private String address;
     private String emailContact;
+    @Version
+    private long version;
+
+    public Company() {}
 
     public Company(String name, String address, String emailContact) {
         this.name = name;

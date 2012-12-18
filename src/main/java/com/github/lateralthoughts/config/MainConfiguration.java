@@ -56,10 +56,9 @@ public class MainConfiguration {
     @Bean
     public DataSource dataSource() {
         // dirty Cloud Foundry hack
-        if(dataSource != null) {
+        if (dataSource != null) {
             return dataSource;
         }
-
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName($("ds.driver"));
         dataSource.setUrl($("ds.url"));

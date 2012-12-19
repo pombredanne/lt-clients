@@ -9,7 +9,7 @@ Lateral Thoughts workers.
 
 1. tailor `datasource.properties` to your needs (any RDBMS should do).
 *Note: 'git update-index --assume-unchanged' is strongly advised here.*
-1. run `mvn tomcat:run`
+1. run `mvn tomcat7:run` (notice it's tomcat7, not tomcat!)
 1. open 'localhost:8080/clients' with your favourite tool (curl, browser...).
 Note you can also, for comfort of use, install [Spring Shell](http://www.springsource.org/spring-shell).
 

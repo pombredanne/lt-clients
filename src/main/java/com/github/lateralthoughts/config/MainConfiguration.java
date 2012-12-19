@@ -1,14 +1,8 @@
 package com.github.lateralthoughts.config;
 
-import org.apache.commons.dbcp.BasicDataSource;
-import org.cloudfoundry.runtime.service.CloudServicesScanner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -18,13 +12,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @ComponentScan("com.github.lateralthoughts")
-@PropertySource("classpath:datasource.properties")
 @EnableJpaRepositories("com.github.lateralthoughts.repository")
 @EnableTransactionManagement
 public class MainConfiguration {
@@ -32,39 +24,16 @@ public class MainConfiguration {
     private static final String DB_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 
     @Inject
-    private Environment environment;
-
-    @Autowired(required = false)
-    @Qualifier("lt-clients-db")
-    private DataSource dataSource;
-
-    @Bean
-    public static CloudServicesScanner cloudServicesScanner() {
-        return new CloudServicesScanner();
-    }
+    private DataSourceConfiguration dataSourceConfiguration;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
-        bean.setDataSource(dataSource());
+        bean.setDataSource(dataSourceConfiguration.dataSource());
         bean.setPackagesToScan("com.github.lateralthoughts.domain");
         bean.setJpaVendorAdapter(jpaVendorAdaptor());
         bean.setJpaPropertyMap(getJpaProperties());
         return bean;
-    }
-
-    @Bean
-    public DataSource dataSource() {
-        // dirty Cloud Foundry hack
-        if (dataSource != null) {
-            return dataSource;
-        }
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName($("ds.driver"));
-        dataSource.setUrl($("ds.url"));
-        dataSource.setUsername($("ds.username"));
-        dataSource.setPassword($("ds.password"));
-        return dataSource;
     }
 
     @Bean
@@ -85,9 +54,5 @@ public class MainConfiguration {
         HashMap<String, String> properties = new HashMap<String, String>();
         properties.put("hibernate.dialect", DB_DIALECT);
         return properties;
-    }
-
-    private String $(String key) {
-        return environment.getProperty(key);
     }
 }

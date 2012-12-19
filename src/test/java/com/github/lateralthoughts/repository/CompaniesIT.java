@@ -4,6 +4,8 @@ import com.github.lateralthoughts.config.TestConfiguration;
 import com.github.lateralthoughts.domain.Company;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.FatalBeanException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -17,6 +19,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 @ContextConfiguration(classes = TestConfiguration.class)
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
+@ActiveProfiles("test")
 public class CompaniesIT {
 
     @Inject

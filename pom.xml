@@ -22,6 +22,16 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <systemProperties>
+                        <spring.profiles.active>local</spring.profiles.active>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
@@ -37,6 +47,9 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <threadCount>4</threadCount>
+                    <systemProperties>
+                        <spring.profiles.active>test</spring.profiles.active>
+                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>

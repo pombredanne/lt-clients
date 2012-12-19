@@ -5,4 +5,4 @@ before_script:
 script: "mvn verify" 
 notifications:
   email:
-    - contact+travis@lateral-thoughts.com
+    - florent.biville+travis@gmail.com

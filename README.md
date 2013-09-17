@@ -37,3 +37,7 @@ You can also check the [hands-on](https://github.com/ericbottard/hands-on-cloudf
 
 1. _worker_: create/delete/expose LT workers (firstName, lastName, email)
 1. _client_: create/delete/expose LT clients (company name, address, email)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fbiville/lt-clients/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
